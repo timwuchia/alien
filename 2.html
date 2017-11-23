@@ -1,0 +1,16 @@
+<html><head><script>
+window.onload=function(){
+	var im = document.getElementById('x')
+	// alert(this) window
+	im.onclick=function(){
+		// alert(this) image that was just clicked
+		this.style.left = parseInt(this.style.left)+1+"px"
+	}
+}	
+</script>
+</head>
+<body>
+	<img src="images/cat.jpg" id="x" 
+	     style="position:absolute; left:12px">
+</body>
+</html>

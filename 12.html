@@ -1,0 +1,29 @@
+<html><head><script>
+myTimer = null
+
+function move(){
+	var img = document.getElementById('x')
+	img.style.left = parseInt(img.style.left)+1+'px'
+}
+
+onload=function(){
+	var im = document.getElementById('x')
+	
+	im.onclick=function(){
+		if(myTimer == null){
+			// not running; let's start a timer
+			myTimer = setInterval(move, 10)
+		}else{
+			// timer is already running; let's stop it 
+			clearInterval(myTimer)
+			myTimer = null
+		}
+	}
+}
+</script>
+</head>
+<body>
+	<img src="images/alien/alienrwalk0.gif" id="x" 
+	     style="position:absolute; left:12px">
+</body>
+</html>

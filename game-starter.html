@@ -1,0 +1,113 @@
+<html><head><script>
+myTimer = null
+step = 11
+jumpTimer = null
+
+
+
+
+
+
+
+
+
+// function jump_btn(jump_btn){
+
+// 	alert(jump_btn);
+
+
+// }
+
+// var jumping = false;
+
+// function jump (){
+
+// 	if(!jumping) {
+
+// 		jumping = true;
+// 		setTimeout(land,5000)
+// 	}
+
+// }
+
+
+// function land(){
+
+// 	jumping = false;
+
+
+// }
+
+	
+
+
+function move(){
+
+	//  walking
+
+	step++
+	if(step >= 30){
+		step = 0
+	}
+
+	var img = document.getElementById('x')
+	img.style.left = parseInt(img.style.left)+1+'px'
+	img.src='images/alien/alienrwalk' + step + '.gif'
+}
+
+
+
+
+
+onload=function(){
+
+// jumping
+
+ var button = document.getElementById('jump_btn');
+
+
+function jump(){
+
+  	im.style.top = parseInt(im.style.top)-40+'px';   	
+
+  
+  }
+
+	
+	button.onclick = function(){
+
+  
+       jump()
+
+	}
+
+function end(){
+
+
+	var pos 0;
+
+}
+
+
+	var im = document.getElementById('x')
+	
+	im.onclick=function(){
+		if(myTimer == null){
+			// not running; let's start a timer
+			myTimer = setInterval(move, 10)
+		}else{
+			// timer is already running; let's stop it 
+			clearInterval(myTimer)
+			myTimer = null
+		}
+	}
+}
+</script>
+</head>
+<body>
+	<img src="images/alien/alienrwalk11.gif" id="x" 
+	     style="position:absolute; left:12px; top:100px">
+
+	     <button id="jump_btn">jump</button>
+</body>
+</html>

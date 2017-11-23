@@ -1,0 +1,22 @@
+<html><head>
+<script>
+
+function move(){
+	var image = document.getElementById('x')
+	
+	image.style.left = parseInt(image.style.left)+10+'px'
+}
+
+
+onload=function(){
+	window.onclick=function(){
+		setInterval(move, 1000)	
+	}
+}
+</script>
+</head>
+<body>
+	<img src="images/cat.jpg" id="x" 
+	     style="position:absolute; left:12px">
+</body>
+</html>

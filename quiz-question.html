@@ -1,0 +1,31 @@
+<html><head><script>
+
+var timerIsRunning = false
+var timer = null
+
+function move(){
+	var img = document.getElementById('x')
+	
+	img.style.left = parseInt(img.style.left)+1+'px'
+}
+
+onload=function(){
+	window.onclick=function(){
+	
+		if(!timerIsRunning){
+			timer = setInterval(move, 10)	
+			timerIsRunning = true
+		}else{
+			// timer is already running; stop it
+			clearInterval(timer)
+			timerIsRunning = false
+		}
+	}
+}
+</script>
+</head>
+<body>
+	<img src="images/cat.jpg" id="x" 
+	     style="position:absolute; left:12px">
+</body>
+</html>
