@@ -1,44 +1,6 @@
 <html><head><script>
 myTimer = null
 step = 11
-jumpTimer = null
-
-
-
-
-
-
-
-
-
-// function jump_btn(jump_btn){
-
-// 	alert(jump_btn);
-
-
-// }
-
-// var jumping = false;
-
-// function jump (){
-
-// 	if(!jumping) {
-
-// 		jumping = true;
-// 		setTimeout(land,5000)
-// 	}
-
-// }
-
-
-// function land(){
-
-// 	jumping = false;
-
-
-// }
-
-	
 
 
 function move(){
@@ -67,26 +29,38 @@ onload=function(){
 
 
 function jump(){
+ 
+    
+
+    var jumpAni = setInterval(frame, 300);
+	
+	function frame(){
+	
+	;
+	
+	setTimeout(move);
+
+    if(parseInt(im.style.top)>=61){
 
   	im.style.top = parseInt(im.style.top)-40+'px';   	
 
-  
+       }else{
+	       im.style.top = parseInt(im.style.top)+40+'px';
+		   clearInterval(jumpAni)     // let alien only jump once
+	   }
+	   
+	 }
   }
 
 	
 	button.onclick = function(){
 
   
-       jump()
+       jump();
 
 	}
 
-function end(){
 
-
-	var pos 0;
-
-}
 
 
 	var im = document.getElementById('x')
@@ -102,6 +76,9 @@ function end(){
 		}
 	}
 }
+
+
+
 </script>
 </head>
 <body>
