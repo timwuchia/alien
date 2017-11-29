@@ -1,71 +1,40 @@
-<html><head><script>
-myTimer = null
-step = 11
+<html>
+<head>
 
+<script>
+
+onload=function(){
+
+var myTimer = null;
+var step = 11;
+var img = document.getElementById('alien');
+var imgWidth = img.clientWidth;
+var OriTop = 100;
+var OriLeft = 12;
+
+var jumpButton = document.getElementById('jump_btn');
+//var counter = 0;
+//counter++;
+
+// Jumping Variables
+var jumpPeak = 8;
+var isJumping = false;
+var jumpCounter = 0;
+var jumpTimer;
 
 function move(){
-
-	//  walking
 
 	step++
 	if(step >= 30){
 		step = 0
 	}
 
-	var img = document.getElementById('x')
+	
 	img.style.left = parseInt(img.style.left)+1+'px'
 	img.src='images/alien/alienrwalk' + step + '.gif'
 }
-
-
-
-
-
-onload=function(){
-
-// jumping
-
- var button = document.getElementById('jump_btn');
-
-
-function jump(){
- 
-    
-
-    var jumpAni = setInterval(frame, 300);
 	
-	function frame(){
-	
-	;
-	
-	setTimeout(move);
-
-    if(parseInt(im.style.top)>=61){
-
-  	im.style.top = parseInt(im.style.top)-40+'px';   	
-
-       }else{
-	       im.style.top = parseInt(im.style.top)+40+'px';
-		   clearInterval(jumpAni)     // let alien only jump once
-	   }
-	   
-	 }
-  }
-
-	
-	button.onclick = function(){
-
-  
-       jump();
-
-	}
-
-
-
-
-	var im = document.getElementById('x')
-	
-	im.onclick=function(){
+	img.onclick=function(){
 		if(myTimer == null){
 			// not running; let's start a timer
 			myTimer = setInterval(move, 10)
@@ -75,16 +44,56 @@ function jump(){
 			myTimer = null
 		}
 	}
+
+	function jump(){
+        
+    //var counter = 0;
+		jumpCounter++;
+
+
+		/*
+		if(jumpCounter > jumpPeak * 2){
+			isJumping = false;
+			jumpCounter = 0;
+			clearInterval(jumpTimer);
+			return;
+		}
+
+		if(jumpCounter < jumpPeak){
+			img.style.top = OriTop - jumpCounter + 'px';
+		}else{
+			img.style.top = jumpCounter + 'px';
+		}
+		*/
+
+		//  y = -ax^2 + b
+
+		var jumpHeight = -Math.pow(jumpCounter - jumpPeak, 2) + Math.pow(jumpPeak,2);
+		img.style.top = OriTop - jumpHeight + 'px';
+		console.log(jumpHeight);
+
+		if(jumpHeight == 0){
+			isJumping = false;
+			jumpCounter = 0;
+			clearInterval(jumpTimer);
+		}
+
+	}
+
+	jumpButton.onclick=function(){
+
+		if(!isJumping){
+			isJumping = true;
+			jumpTimer = setInterval(jump,17);
+		}
+
+	}
 }
-
-
-
 </script>
 </head>
 <body>
-	<img src="images/alien/alienrwalk11.gif" id="x" 
+	<img src="images/alien/alienrwalk11.gif" id="alien" 
 	     style="position:absolute; left:12px; top:100px">
-
-	     <button id="jump_btn">jump</button>
+	<button name="jump" id="jump_btn">jump</button>
 </body>
 </html>
