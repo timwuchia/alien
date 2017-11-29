@@ -6,43 +6,85 @@
 onload=function(){
 
 var myTimer = null;
-var step = 11;
+var steps = 11;
 var img = document.getElementById('alien');
 var imgWidth = img.clientWidth;
 var OriTop = 100;
 var OriLeft = 12;
 
+
 var jumpButton = document.getElementById('jump_btn');
+var winWidth = window.innerWidth;
+var imgWidth = img.clientWidth;
 //var counter = 0;
 //counter++;
 
 // Jumping Variables
-var jumpPeak = 8;
+var jumpPeak = 10;
 var isJumping = false;
 var jumpCounter = 0;
 var jumpTimer;
+var walk = 1;
+var position = imgWidth;
 
-function move(){
+window.addEventListener('resize', function(){
+		winWidth = window.innerWidth;
+		if (position >= winWidth)
+		{
+			position = winWidth;
+			img.style.left = position - imgWidth + 'px'
+		}
+	}, true);
 
-	step++
-	if(step >= 30){
-		step = 0
+	function move(){
+		//console.log(winWidth, "width");
+	  	steps++
+		if(steps >= 30){
+			steps = 0;
+		}
+		
+		if( walk >= 0){	
+			img.style.left = parseInt(img.style.left) + walk + 'px';
+			if (!isJumping)
+			{
+				img.src='images/alien/alienrwalk' + steps + '.gif';
+			}
+		} else {
+			img.style.left = parseInt(img.style.left) + walk + 'px';
+			if (!isJumping)
+			{
+				img.src='images/alien/alienlwalk' + steps + '.gif';
+			}
+		}
+
+		// position = position + walk		
+		position += walk;
+		//console.log(position, "moving");
+		if(position >= winWidth){
+			 walk = -walk;
+		}
+
+		if(position <= imgWidth){
+			walk = -walk;
+			position = imgWidth;
+		}
 	}
 
-	
-	img.style.left = parseInt(img.style.left)+1+'px'
-	img.src='images/alien/alienrwalk' + step + '.gif'
-}
+
+
 	
 	img.onclick=function(){
+
 		if(myTimer == null){
 			// not running; let's start a timer
-			myTimer = setInterval(move, 10)
+			myTimer = setInterval(move, 15);
 		}else{
 			// timer is already running; let's stop it 
-			clearInterval(myTimer)
-			myTimer = null
-		}
+			clearInterval(myTimer);
+			myTimer = null;
+		 }
+
+
 	}
 
 	function jump(){
@@ -84,7 +126,7 @@ function move(){
 
 		if(!isJumping){
 			isJumping = true;
-			jumpTimer = setInterval(jump,17);
+			jumpTimer = setInterval(jump,25);
 		}
 
 	}
